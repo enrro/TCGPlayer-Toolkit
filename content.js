@@ -2,11 +2,16 @@
 
 // Function to log the href attribute of an anchor element
 function logAnchorHref(event) {
-    const element = event.target;
-    if (element.tagName === 'A') {
-      console.log('Element Href:', element.href);
+  const element = event.target;
+  if (element.tagName === 'A') {
+    const href = element.href;
+    const tcgplayerPattern = /https:\/\/shop\.tcgplayer\.com\/sellerfeedback\/[a-zA-Z0-9_-]+/;
+    
+    if (tcgplayerPattern.test(href)) {
+      console.log('Element Href:', href);
     }
   }
+}
   
   // Check if the current frame is the main frame
   if (window === window.top) {
