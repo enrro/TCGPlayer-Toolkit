@@ -8,7 +8,11 @@ function logAnchorHref(event) {
     const tcgplayerPattern = /https:\/\/shop\.tcgplayer\.com\/sellerfeedback\/[a-zA-Z0-9_-]+/;
     
     if (tcgplayerPattern.test(href)) {
+      const parts = href.split("/");
+      const lastPart = parts[parts.length - 1];
+
       console.log('Element Href:', href);
+      console.log('last part:', lastPart);
       // Perform a GET request using Fetch API
       fetch(href)
       .then(response => response.text())
