@@ -12,7 +12,7 @@
     },
     "content_scripts": [
         {
-          "matches": ["https://www.tcgplayer.com/*"],
+          "matches": ["https://*.tcgplayer.com/*"],
           "js": ["content.js"],
           "all_frames": true
         }

@@ -9,6 +9,15 @@ function logAnchorHref(event) {
     
     if (tcgplayerPattern.test(href)) {
       console.log('Element Href:', href);
+      // Perform a GET request using Fetch API
+      fetch(href)
+      .then(response => response.text())
+      .then(content => {
+        console.log('Content:', content);
+      })
+      .catch(error => {
+        console.error('Error fetching:', error);
+      });
     }
   }
 }
