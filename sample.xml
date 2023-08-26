@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" class="ic page page--legacy "
+	data-application-version="v31397">
+
+<head>
+</head>
+
+
+<body>
+
+
+	<script type="text/javascript">...
+	</script>
+
+	<div id="consent-container" style="display: none;"></div>
+
+	<div class="large-popup-bg" id="bestPriceSellersPopup" style="display: none">
+
+	</div>
+
+	<div class="large-popup-bg" id="topSellerPricesPopup" style="display: none">
+
+	</div>
+
+	<div class="pageOverlay"></div>
+
+
+
+	<style>...
+	</style>
+
+
+	<div id="kickbacksContent"></div>
+
+	<script>...
+	</script>
+	<div id="pagecontent" class="wrapper">
+
+
+
+		<style>...
+		</style>
+
+		<script type="text/javascript">...
+		</script>
+
+		<header>...
+		</header>
+		<div class="nav-container">...
+		</div>
+
+		<script type="text/javascript">...
+		</script>
+
+
+		<div id="maincontentinnerpadding">
+<div class="sellerTop">
+    <div class="sellerMain">
+        <h1>Jakesters Cards</h1>
+        <hr>
+        <div class="shopWithSeller">
+            <h2><a href="https://www.tcgplayer.com/search/all/product?seller=6c40864c">Shop Exclusively from
+                    Jakesters Cards</a></h2>
+            <p>Clicking the button will convert all navigation into a virtual storefront for Jakesters
+                Cards.</p>
+            <button class="largeBlueButton2"
+                onclick="trackSellerEvent('Shop this Seller', 'Shop this Seller'); location.href = 'https://www.tcgplayer.com/search/all/product?seller=6c40864c'"><span><img
+                        src="/content/images/carticon_white.png" /></span>SHOP FROM THIS SELLER</button>
+        </div>
+        <div class="sellerStats">
+            <h3><em>0.0% Positive Rating</em> (0 ratings)</h3>
+            <table class="sellerStatsTable">
+                <tr>
+                    <th>RATING</th>
+                    <th>30 DAYS</th>
+                    <th>90 DAYS</th>
+                    <th>365 DAYS</th>
+                    <th>LIFETIME</th>
+                </tr>
+                <tr>
+                    <td>Positive</td>
+                    <td class="positiveRating">0.0%</td>
+                    <td class="positiveRating">0.0%</td>
+                    <td class="positiveRating">0.0%</td>
+                    <td class="positiveRating">100.0%</td>
+                </tr>
+                <tr>
+                    <td>Neutral</td>
+                    <td>0.0%</td>
+                    <td>0.0%</td>
+                    <td>0.0%</td>
+                    <td>0.0%</td>
+                </tr>
+                <tr>
+                    <td>Negative</td>
+                    <td>0.0%</td>
+                    <td>0.0%</td>
+                    <td>0.0%</td>
+                    <td>0.0%</td>
+                </tr>
+                <tr>
+                    <td>Count</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>68</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="sellerInfo">
+        <p><em>Completed Sales:</em> 68</p>
+        <p><em>Location:</em> Minnesota</p>
+        <ul>
+        </ul>
+        <hr>
+        <p class="shopFromSeller"><a onclick="trackSellerEvent('Shop This Seller', 'Shop This Seller')"
+                href="https://www.tcgplayer.com/search/all/product?seller=6c40864c"><span>Shop from this
+                    Seller</span></a>
+        </p>
+        <p class="viewFeedback"><a onclick="trackSellerEvent('View Feedback', 'View Feedback')"
+                href="#Comments"><span>View Feedback</span></a></p>
+    </div>
+</div>
