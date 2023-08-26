@@ -14,14 +14,13 @@ function logAnchorHref(event) {
       console.log('Element Href:', href);
       console.log('last part:', lastPart);
       // Perform a GET request using Fetch API
-      fetch(href)
-      .then(response => response.text())
-      .then(content => {
-        console.log('Content:', content);
-      })
-      .catch(error => {
-        console.error('Error fetching:', error);
-      });
+      const options = {method: 'GET', headers: {accept: 'application/json'}};
+      const apiUrl = `https://api.tcgplayer.com/stores/${lastPart}/address`;
+
+      fetch(apiUrl, options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
     }
   }
 }
