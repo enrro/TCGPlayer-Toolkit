@@ -27,11 +27,4 @@ function logAnchorHref(event) {
   }
 }
   
-  // Check if the current frame is the main frame
-  if (window === window.top) {
-    // Attach event listeners to all elements in the main frame
-    const mainFrameElements = document.querySelectorAll('*');
-    mainFrameElements.forEach(element => {
-      element.addEventListener('mouseover', logAnchorHref);
-    });
-  }
+document.addEventListener('mouseover', logAnchorHref);
