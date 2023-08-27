@@ -21,10 +21,34 @@ function logAnchorHref(event) {
       console.log('request to sent:', request);
       fetch(request, options)
         .then(response => response.json())
-        .then(response => console.log(response))
+        .then(response => {
+          const state = response.state;
+          displayTooltip(event, state);
+        })
         .catch(err => console.error(err));
     }
   }
+}
+
+// Function to display the tooltip
+function displayTooltip(event, address) {
+  const tooltip = document.createElement('div');
+  tooltip.className = 'tooltip';
+  tooltip.textContent = address;
+
+  const bodyRect = document.body.getBoundingClientRect();
+  const elementRect = event.target.getBoundingClientRect();
+
+  tooltip.style.position = 'absolute';
+  tooltip.style.left = `${elementRect.left - bodyRect.left}px`;
+  tooltip.style.top = `${elementRect.bottom - bodyRect.top}px`;
+
+  document.body.appendChild(tooltip);
+
+  // Remove the tooltip after a delay
+  setTimeout(() => {
+    document.body.removeChild(tooltip);
+  }, 3000);
 }
   
 document.addEventListener('mouseover', logAnchorHref);
