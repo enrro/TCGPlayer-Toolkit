@@ -51,6 +51,10 @@ function displayTooltip(event, address) {
   setTimeout(() => {
     document.body.removeChild(tooltip);
   }, 3000);
+    // Remove the tooltip when the mouse leaves the link
+    // event.target.addEventListener('mouseleave', () => {
+    //   document.body.removeChild(tooltip);
+    // });
 }
   
 document.addEventListener('mouseover', logAnchorHref);
