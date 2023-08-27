@@ -2,6 +2,7 @@
 // URL of your proxy server's endpoint
 const proxyUrl = 'http://localhost:3000/proxy';
 const tcgplayerPattern = /https:\/\/shop\.tcgplayer\.com\/sellerfeedback\/[a-zA-Z0-9_-]+/;
+
 // Function to log the href attribute of an anchor element
 function logAnchorHref(event) {
   const element = event.target;
@@ -40,8 +41,9 @@ function displayTooltip(event, address) {
   const elementRect = event.target.getBoundingClientRect();
 
   tooltip.style.position = 'absolute';
+  
   tooltip.style.left = `${elementRect.left - bodyRect.left}px`;
-  tooltip.style.top = `${elementRect.bottom - bodyRect.top}px`;
+  tooltip.style.top = `${elementRect.top - bodyRect.top - tooltip.offsetHeight - 20}px`;
 
   document.body.appendChild(tooltip);
 
