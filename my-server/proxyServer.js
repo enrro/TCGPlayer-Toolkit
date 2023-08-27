@@ -15,27 +15,20 @@ app.get('/proxy', async (req, res) => {
     } catch (error) {
         return res.status(400).json({ error: 'Invalid target URL' });
     }
-    console.log(targetUrl);
     try {
         const response =  await fetch(targetUrl);
         const htmlContent = await response.text();
-        // Use cheerio to parse the HTML content
-        // Load the HTML content into a cheerio instance
         const $ = cheerio.load(htmlContent);
-        // find the sellerInfo section
         const sellerInfoSection = $('.sellerInfo');
-        // Find the location element within the sellerInfo section
+        const sellerMainDiv = $('.sellerMain');
 
-        // Extract the text content of the sellerInfo section
+        // Extract the seller's name from the h1 element
+        const sellerName = sellerMainDiv.find('h1').text().trim();
+        console.log('Seller Name:', sellerName);
+
         const sellerInfo = sellerInfoSection.text().trim();
-        console.log('seller information section:', sellerInfo);
-
-        // Extract the location information from the sellerInfo text
-        // const locationMatch = sellerInfo.match(matchLocationRegex);
-        // const location = locationMatch ? locationMatch[1] : null;
         const stateMatch = sellerInfo.match(statesRegex);
         const state = stateMatch? stateMatch[0] : null;
-        // console.log("current location: ", location);
         console.log("state match: ", stateMatch);
         // Return the sellerInfo as a JSON response
         res.setHeader('Access-Control-Allow-Origin', '*'); // Update with appropriate origin
