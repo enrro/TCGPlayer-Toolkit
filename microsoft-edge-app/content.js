@@ -3,8 +3,9 @@
 const proxyUrl = 'http://localhost:3000/proxy';
 const tcgplayerPattern = /https:\/\/shop\.tcgplayer\.com\/sellerfeedback\/[a-zA-Z0-9_-]+/;
 
+
 // Function to log the href attribute of an anchor element
-function logAnchorHref(event) {
+function handleAnchorHover(event) {
   const element = event.target;
   if (element.tagName === 'A') {
     const href = element.href;
@@ -12,12 +13,9 @@ function logAnchorHref(event) {
     if (tcgplayerPattern.test(href)) {
       const parts = href.split("/");
       const lastPart = parts[parts.length - 1];
-
-      // console.log('Element Href:', href);
-      // console.log('last part:', lastPart);
+      logElementsWithClassName('listing-item product-details__listings-results');
       // Perform a GET request using Fetch API
       const options = {method: 'GET', headers: {accept: 'application/json'}};
-      const apiUrl = `https://api.tcgplayer.com/stores/${lastPart}/address`;
       const request = `${proxyUrl}?href=${encodeURIComponent(href)}`;
       console.log('request to sent:', request);
       fetch(request, options)
@@ -57,4 +55,17 @@ function displayTooltip(event, address) {
     // });
 }
   
-document.addEventListener('mouseover', logAnchorHref);
+document.addEventListener('mouseover', handleAnchorHover);
+
+// Function to retrieve and log all elements with a specific class name
+function logElementsWithClassName(className) {
+  const elements = document.getElementsByClassName(className);
+  const elementsArray = Array.from(elements); // Convert HTMLCollection to an array
+  console.log(`Found ${elementsArray.length} elements with class ${className}:`, elementsArray);
+}
+
+// Call the function when the page is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  console.log("hello there");
+  logElementsWithClassName('listing-item product-details__listings-results');
+});
