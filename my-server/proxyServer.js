@@ -31,13 +31,15 @@ app.get('/proxy', async (req, res) => {
         console.log('seller information section:', sellerInfo);
 
         // Extract the location information from the sellerInfo text
-        const locationMatch = sellerInfo.match(matchLocationRegex);
-        const location = locationMatch ? locationMatch[1] : null;
-
-        console.log("current location: ", location);
+        // const locationMatch = sellerInfo.match(matchLocationRegex);
+        // const location = locationMatch ? locationMatch[1] : null;
+        const stateMatch = sellerInfo.match(statesRegex);
+        const state = stateMatch? stateMatch[0] : null;
+        // console.log("current location: ", location);
+        console.log("state match: ", stateMatch);
         // Return the sellerInfo as a JSON response
         res.setHeader('Access-Control-Allow-Origin', '*'); // Update with appropriate origin
-        res.json({ location });
+        res.json({ state });
     } catch (error) {
         return res.status(500).json({ error: 'Failed to fetch data from target URL' });
     }
