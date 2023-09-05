@@ -18,32 +18,39 @@ app.get('/proxy', async (req, res) => {
         return res.status(400).json({ error: 'Invalid target URL' });
     }
     try {
-        const response = await fetch(targetUrl);
         const sellersId = getSellerId(targetUrl);
-        const htmlContent = await response.text();
-        const $ = cheerio.load(htmlContent);
-        const sellerInfoSection = $('.sellerInfo');
-        const sellerMainDiv = $('.sellerMain');
+        var sellerData;
+        if (sellerCache.hasOwnProperty(sellersId)) {
+            sellerData = sellerCache[sellersId];
+            console.log('Data retrieved from cache:', sellerData);
+        } else {
+            // The sellersId is not in the cache
+            // You can fetch the data and add it to the cache
+            const response = await fetch(targetUrl);
+            const htmlContent = await response.text();
+            const $ = cheerio.load(htmlContent);
+            const sellerInfoSection = $('.sellerInfo');
+            const sellerMainDiv = $('.sellerMain');
 
-        // Extract the seller's name from the h1 element
-        const sellerName = sellerMainDiv.find('h1').text().trim();
-        console.log(`Seller Name: ${sellerName}\nSeller id: ${sellersId}`);
+            // Extract the seller's name from the h1 element
+            const sellerName = sellerMainDiv.find('h1').text().trim();
 
-        const sellerInfo = sellerInfoSection.text().trim();
-        const stateMatch = sellerInfo.match(statesRegex);
-        const state = stateMatch ? stateMatch[0] : "non US seller";
-        console.log("state match: ", stateMatch);
+            const sellerInfo = sellerInfoSection.text().trim();
+            const stateMatch = sellerInfo.match(statesRegex);
+            const state = stateMatch ? stateMatch[0] : "non US seller";
 
-        const newSellerData = {
-            "sellerName": sellerName,
-            "sellersId": sellersId,
-            "state": state
-        };
-        sellerCache[newSellerData.sellersId] = newSellerData;
-        saveCache(sellerCache);
+            const newSellerData = {
+                "sellerName": sellerName,
+                "sellersId": sellersId,
+                "state": state
+            };
+            sellerCache[newSellerData.sellersId] = newSellerData;
+            sellerData = newSellerData;
+            saveCache(sellerCache);
+        }
         // Return the sellerInfo as a JSON response
         res.setHeader('Access-Control-Allow-Origin', '*'); // Update with appropriate origin
-        res.json({ state });
+        res.json({ state: sellerData.state });
     } catch (error) {
         return res.status(500).json({ error: 'Failed to fetch data from target URL' });
     }
