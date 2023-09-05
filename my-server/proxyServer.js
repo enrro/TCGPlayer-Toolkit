@@ -7,6 +7,7 @@ import { loadCache, saveCache } from './cache.js';
 const app = express();
 const PORT = 3000;
 const statesRegex = /\b(?:Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New\sHampshire|New\sJersey|New\sMexico|New\sYork|North\sCarolina|North\sDakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode\sIsland|South\sCarolina|South\sDakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West\sVirginia|Wisconsin|Wyoming)\b/g;
+let sellerCache = loadCache();
 app.use(express.json());
 
 app.get('/proxy', async (req, res) => {
@@ -32,6 +33,14 @@ app.get('/proxy', async (req, res) => {
         const stateMatch = sellerInfo.match(statesRegex);
         const state = stateMatch ? stateMatch[0] : "non US seller";
         console.log("state match: ", stateMatch);
+
+        const newSellerData = {
+            "sellerName": sellerName,
+            "sellersId": sellersId,
+            "state": state
+        };
+        sellerCache[newSellerData.sellersId] = newSellerData;
+        saveCache(sellerCache);
         // Return the sellerInfo as a JSON response
         res.setHeader('Access-Control-Allow-Origin', '*'); // Update with appropriate origin
         res.json({ state });
