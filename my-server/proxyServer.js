@@ -42,8 +42,10 @@ app.get('/proxy', async (req, res) => {
             const newSellerData = {
                 "sellerName": sellerName,
                 "sellersId": sellersId,
-                "state": state
+                "state": state,
+                timestamp: new Date().toISOString() // adds current UTC timestamp in ISO 8601 format
             };
+            console.log(`Caching new seller: ${newSellerData.sellerName}`);
             sellerCache[newSellerData.sellersId] = newSellerData;
             sellerData = newSellerData;
             saveCache(sellerCache);
