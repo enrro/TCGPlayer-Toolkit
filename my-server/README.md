@@ -31,6 +31,7 @@ npm install
 
 ```bash
 npm start
+node proxyServer.js
 ```
 2. The server will be running on http://localhost:3000 by default.
 
